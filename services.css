@@ -1,0 +1,33 @@
+ .formdiv{
+    text-align: center;
+    padding: 30px;
+    align-items: center;
+    margin: auto;
+    width: 50%;
+    border: 1px solid rgb(218, 217, 217);
+    margin-top: 60px;
+    border-radius: 5px;
+    background-color: #f5f5f5;
+}
+  .schedulhead{
+    margin: 10px;
+  }
+  
+  @media(max-width:1100px){
+    .formdiv{
+        width: 65%;
+
+    }
+  }
+  @media(max-width:900px){
+    .formdiv{
+        width: 70%;
+
+    }
+  }
+  @media(max-width:550px){
+    .formdiv{
+        width: 85%;
+
+    }
+  }
