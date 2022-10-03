@@ -29,7 +29,22 @@
     
     padding-top: 50px;
 }
+.activitybtn{
+    float: right;
+     margin: 15px auto;
 
+}
+.ATbtn{
+    border: none;
+    text-align: center;
+    align-items: center;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #a4c639;
+    color: black;
+}
 @media(max-width:1050px){
     .letterdiv{
         width: 70%;

@@ -13,10 +13,11 @@ if (isset($_POST['login'])) {
 
     if (isset($data)) {
         $_SESSION['email'] = $data['email'];
+        $_SESSION['loggedin'] = true;
 
 
-        header("location:./index.php");
-    } else {
+        header("location:./profile.php");
+    } else {	
         echo '<script>alert("Wrong Data")</script>';
     }
 }
@@ -69,6 +70,8 @@ echo "<script>alert('User registerd Error')</script>";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./login.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" integrity="sha384-xeJqLiuOvjUBq3iGOjvSQSIlwrpqjSHXpduPd6rQpuiM3f5/ijby8pCsnbu5S81n" crossorigin="anonymous">
+
 </head>
 <body>
 <div id="container" class="container">
@@ -105,6 +108,10 @@ echo "<script>alert('User registerd Error')</script>";
 								Sign in here
 							</b>
 						</p>
+						
+							 <p>
+							 <a href="./index.php">	<i class="bi bi-house-fill" style="font-size:18px;"></i> </a>
+						</p>
                     </form>
 				</div>
 			
@@ -137,6 +144,9 @@ echo "<script>alert('User registerd Error')</script>";
 							<b onclick="toggle()" class="pointer">
 								Sign up here
 							</b>
+						</p>
+						<p>
+							 <a href="./index.php">	<i class="bi bi-house-fill" style="font-size:22px;"></i> </a>
 						</p>
                     </form>
 				</div>

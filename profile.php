@@ -1,6 +1,7 @@
  <?php
  include('./header.php');
 
+
  session_start();
     if (isset($_SESSION['email'])) {
         $email = $_SESSION['email'];
@@ -30,7 +31,7 @@
     <div>
         <div class="profilebg"></div> 
          <div class="midcont">
-            <div class="leftimg"><img class="userimg" src="./assets/images/person.webp"></img></div>
+            <div class="leftimg"><img class="userimg" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1IZ9bnI2Lg-_W8iodV4kKz1IPGxMynkesgg&usqp=CAU"></img></div>
             <div class="rightitem">
                 <div class="rightitemscont"><h1 style="font-weight:600; margin-top:22px;"><?php echo $data['name']; ?> </h1><div class="dots"> <a href="./logout.php" ><i class="bi bi-power" style="cursor:pointer; height:20px;width: 20px;font-size:20px;font-weight:500;"></i></a> </div>  </div>
               <div>  <p>Advisor and consultant </p></div>
@@ -83,10 +84,10 @@
   <tbody>
     <tr>
       <td data-label="id">1</td>
-      <td data-label="type">Visa - 3412</td>
+      <td data-label="type">Visa - 3412</td>  
       <td data-label="Date">04/01/2016</td>
       <td data-label="download"><button class="dwnbtn"><i class="bi bi-download"></i> &nbsp;Download&nbsp;</button></td>
-      <td data-label="edit"><button class="viewbtn"><i class="bi bi-eye-fill"></i></button></td>
+      <td data-label="edit"><a href="./letterView.php"><button class="viewbtn"><i class="bi bi-eye-fill"></i></button></a></td>
       <td data-label="edit"><button class="editbtn"><i class="bi bi-pencil-square"></i></button></td>
       <td data-label="delete"><button class="delbtn"><i class="bi bi-trash3-fill"></i></button></td>
     </tr>
@@ -95,7 +96,7 @@
       <td data-label="type">Visa - 3412</td>
       <td data-label="Date">04/01/2016</td>
       <td data-label="download"><button class="dwnbtn"><i class="bi bi-download"></i> &nbsp;Download&nbsp;</button></td>
-      <td data-label="edit"><button class="viewbtn"><i class="bi bi-eye-fill"></i></button></td>
+      <td data-label="edit"><a href="./letterView.php"><button class="viewbtn"><i class="bi bi-eye-fill"></i></button></a></td>
       <td data-label="edit"><button class="editbtn"><i class="bi bi-pencil-square"></i></button></td>
       <td data-label="delete"><button class="delbtn"><i class="bi bi-trash3-fill"></i></button></td>
     </tr>
@@ -104,7 +105,7 @@
       <td data-label="type">Visa - 3412</td>
       <td data-label="Date">04/01/2016</td>
       <td data-label="download"><button class="dwnbtn"><i class="bi bi-download"></i> &nbsp;Download&nbsp;</button></td>
-      <td data-label="edit"><button class="viewbtn"><i class="bi bi-eye-fill"></i></button></td>
+      <td data-label="edit"><a href="./letterView.php"><button class="viewbtn"><i class="bi bi-eye-fill"></i></button></a></td>
       <td data-label="edit"><button class="editbtn"><i class="bi bi-pencil-square"></i></button></td>
       <td data-label="delete"><button class="delbtn"><i class="bi bi-trash3-fill"></i></button></td>
     </tr>
@@ -113,7 +114,7 @@
       <td data-label="type">Visa - 3412</td>
       <td data-label="Date">04/01/2016</td>
       <td data-label="download"><button class="dwnbtn"><i class="bi bi-download"></i> &nbsp;Download&nbsp;</button></td>
-      <td data-label="edit"><button class="viewbtn"><i class="bi bi-eye-fill"></i></button></td>
+      <td data-label="edit"><a href="./letterView.php"><button class="viewbtn"><i class="bi bi-eye-fill"></i></button></a></td>
       <td data-label="edit"><button class="editbtn"><i class="bi bi-pencil-square"></i></button></td>
       <td data-label="delete"><button class="delbtn"><i class="bi bi-trash3-fill"></i></button></td>
     </tr>

@@ -1,13 +1,11 @@
 <?php
-include('./conn.php');
-// include('./header.php');
-
-    $get="SELECT * FROM letters ";
-    $query = mysqli_query($conn, $get);
-    $data = mysqli_fetch_assoc($query);
+ require('./conn.php');
 
 
-
+ $select= "SELECT * FROM letters";
+ $query = mysqli_query($conn, $select);
+ $data = mysqli_fetch_assoc($query);
+// print_r($data) 
 ?>
 
 <!DOCTYPE html>
@@ -21,23 +19,18 @@ include('./conn.php');
   <meta name="author" content="TemplateMo">
   <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap"
     rel="stylesheet">
-
+<link rel="stylesheet" href="./all_lettersTable.css">
   <title>Finance Business - Services</title>
-  <link rel="stylesheet" href="./letterView.css">
+  <link rel="stylesheet" href="./services.css">
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" integrity="sha384-xeJqLiuOvjUBq3iGOjvSQSIlwrpqjSHXpduPd6rQpuiM3f5/ijby8pCsnbu5S81n" crossorigin="anonymous">
+<script src="./all_letterTable.js"></script>
   <!-- Additional CSS Files -->
   <link rel="stylesheet" href="assets/css/fontawesome.css">
   <link rel="stylesheet" href="assets/css/templatemo-finance-business.css">
   <link rel="stylesheet" href="assets/css/owl.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" integrity="sha384-xeJqLiuOvjUBq3iGOjvSQSIlwrpqjSHXpduPd6rQpuiM3f5/ijby8pCsnbu5S81n" crossorigin="anonymous">
-
- <!-- pdf converter cdn -->
- <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
- <script src="./pdfConverter.js"></script>
- <!-- pdf converter cdn -->
-
+   
 
 </head>
 
@@ -71,11 +64,11 @@ include('./conn.php');
                 <span class="sr-only">(current)</span>
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="./all_LettersTable.php">About Us</a>
-            </li>
             <li class="nav-item active">
-              <a class="nav-link" href="services.html">Our Services</a>
+              <a class="nav-link" href="./about.php">About Us</a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link" href="./services.php">Our Services</a>
             </li>
             <?php 
               if(isset($_SESSION['loggedin'])==true)
@@ -101,68 +94,141 @@ include('./conn.php');
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h1>Your Approvals </h1>
+          <h1>All Letters</h1>
           <span>We are over 20 years of experience</span>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- main content of page start from here  -->
+ <!-- letters table view starts from here  -->
+      <div>
+        <div class="outerTable">
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
 
-  <div class="letterdiv">
-  <div class="activitybtn">
-    <button class="ATbtn"><i class="bi bi-file-earmark-pdf-fill"></i> &nbsp;Pdf &nbsp; </button>
-    <button  class="ATbtn"><i class="bi bi-send-fill"></i>  &nbsp; Send   &nbsp; </button>
-  </div>
+  <table id="myTable">
+  <tr class="header">
+    <th>Name</th>
+    <th>Reference ID</th>
+    <th>Subject</th>
+    <th>Email</th>
+    <th>Date</th>
+    <th>View</th>
+    <th>Send</th>
+     
 
-    <div class="letterBox" id="letterbox">
-            <div class="leter">
-                <h4 style="text-align:center;">Approval letter</h4>
-                <hr/>
-            <div class="divReturnAddress" id="divReturnAddress">
-            Lopes de Almeido, Evanildo<br/>
-            <?php  echo $data['address'] ?>, <br/>
-            <?php  echo $data['city'] ?> ,<br/>    
-            <br/>
-            <?php  echo $data['date'] ?>,
+  </tr>
+  <?php while($data=mysqli_fetch_array($query)) { ?>
+  <tr>
+    <td><?php echo $data['name']; ?></td>
+    <td><?php echo $data['referenceID']; ?></td>
+    <td><?php echo $data['subject']; ?></td>
+    <td><?php echo $data['email']; ?></td>
+    <td><?php echo $data['date']; ?></td>
+    <td style="text-align:center;"><a href="#"> <i class="bi bi-eye-fill"></i> </a></td>
+    <td>send</td>
+    
+  </tr>
+  <?php
+  }
+  ?>
+  
+</table>
+
+         </div>      
+
+      </div>
+ <!-- letters table view end  here  -->
+  
+
+
+  <div class="single-services">
+    <div class="container">
+      <div class="row" id="tabs">
+        <div class="col-md-4">
+          <ul>
+            <li><a href='#tabs-1'>Market Analysis <i class="fa fa-angle-right"></i></a></li>
+            <li><a href='#tabs-2'>Financial Data <i class="fa fa-angle-right"></i></a></li>
+            <li><a href='#tabs-3'>Accounting Service <i class="fa fa-angle-right"></i></a></li>
+            <li><a href='#tabs-4'>Overall Evaluation <i class="fa fa-angle-right"></i></a></li>
+          </ul>
         </div>
-
-        <div class="divSubject" style="margin-bottom:10px">
-        Subject is  related to : <?php  echo $data['subject'] ?> 
+        <div class="col-md-8">
+          <section class='tabs-content'>
+            <article id='tabs-1'>
+              <img src="assets/images/single_service_01.jpg" alt="">
+              <h4>Market Analysis</h4>
+              <p>Vivamus sed feugiat elit. Pellentesque pretium, massa at placerat vehicula, neque turpis pulvinar
+                tortor, eget convallis lorem odio non tortor. Donec massa est, fermentum sit amet felis ac, maximus
+                luctus elit. Vivamus aliquet, dolor id imperdiet imperdiet, dui diam aliquet dui, a euismod metus enim
+                ac velit. Vivamus eu tristique odio, vel tristique quam.
+                <br><br>Proin eu molestie risus. Etiam suscipit pretium odio, at consectetur nisi. Sed ut dolor in augue
+                cursus ultrices. Vivamus mauris turpis, auctor vel facilisis in, tincidunt vel diam. Sed vitae
+                scelerisque orci. Nunc non magna orci. Aliquam commodo mauris ante.
+              </p>
+            </article>
+            <article id='tabs-2'>
+              <img src="assets/images/single_service_02.jpg" alt="">
+              <h4>Financial Data</h4>
+              <p>Sed ut dolor in augue cursus ultrices. Vivamus mauris turpis, auctor vel facilisis in, tincidunt vel
+                diam. Sed vitae scelerisque orci. Nunc non magna orci. Aliquam commodo mauris ante, quis posuere nibh
+                vestibulum sit amet
+                <br><br>Pellentesque pretium, massa at placerat vehicula, neque turpis pulvinar tortor, eget convallis
+                lorem odio non tortor. Donec massa est, fermentum sit amet felis ac, maximus luctus elit. Vivamus
+                aliquet, dolor id imperdiet imperdiet, dui diam aliquet dui, a euismod metus enim ac velit. Vivamus eu
+                tristique odio, vel tristique quam.
+              </p>
+            </article>
+            <article id='tabs-3'>
+              <img src="assets/images/single_service_03.jpg" alt="">
+              <h4>Accounting Service</h4>
+              <p>Mauris lobortis quam id dictum dignissim. Donec pellentesque erat dolor, cursus dapibus turpis
+                hendrerit quis. Suspendisse at suscipit arcu. Nulla sed erat lectus. Nulla facilisi. In sit amet neque
+                sapien. Donec scelerisque mi at gravida efficitur. Nunc lacinia a est eu malesuada. Curabitur eleifend
+                elit sapien, sed pulvinar orci luctus eget.
+                <br><br>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nunc
+                vel ultrices nulla, ac tincidunt eros. Aenean quis tellus velit. Praesent pretium justo non auctor
+                condimentum.
+              </p>
+            </article>
+            <article id='tabs-4'>
+              <img src="assets/images/single_service_04.jpg" alt="">
+              <h4>Overall Evaluation</h4>
+              <p>Integer vehicula sapien quis dolor efficitur, eget molestie eros tempus. Curabitur sollicitudin, tortor
+                at suscipit volutpat, nisi arcu aliquet dui, vitae semper sem turpis quis libero. Quisque vulputate
+                lacinia nisl ac lobortis. Ut ultricies maximus turpis, in sollicitudin ligula posuere vel.
+                <br><br>Donec finibus maximus neque, vitae egestas quam imperdiet nec. Proin nec mauris eu tortor
+                consectetur tristique. Etiam suscipit ante a odio consequat, in ornare lacus suscipit. Cras ac libero
+                massa. Quisque rhoncus velit feugiat vulputate mollis. Donec nisl eros, malesuada sed nisi id,
+                condimentum condimentum quam.
+              </p>
+            </article>
+          </section>
         </div>
-
-        <div class="divContents">
-            <p>
-                Sehr geehrte Frau Graf,
-            </p>
-
-            <p>
-            The Vermont Board of Land Surveyors reviewed your request to approve continuing education credits for 40 courses sponsored by PDHcenter.com.
-
-                You will find the committee’s approval and granting credits as requested by you in this approval letter. Additionally, there’s an exception of the ones noted as denied. We are pleased to inform you that your request to increase your credit limit has been approved. The new credit limit is $[Amount]. Additionally, along with this approval letter, you will find an exact copy of our credit terms. This document explains in detail the amount you will be billed every month.
-
-
-            </p>
-        </div>
-
-        <div class="divAdios">
-        <?php  echo $data['email'] ?>, <br/>
-            <!-- Space for signature. -->
-          
-            
-            <?php  echo $data['zip'] ?>, <br/>
-            <?php  echo $data['name'] ?> <br/>
-        </div>
-            </div>
-        </div>
+      </div>
     </div>
-
-  <!-- main content of page end here  -->
-  <div>
-    <button onclick="generatePdf()">Download</button>
   </div>
 
+  <!-- table sart -->
+
+  <!-- table end-->
+
+  <div class="partners">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="owl-partners owl-carousel">
+            <div class="partner-item">
+              <img src="assets/images/client-01.png" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer Starts Here -->
   <footer>
     <div class="container">
       <div class="row">
@@ -267,4 +333,4 @@ include('./conn.php');
 
 </body>
 
-</html
+</html>

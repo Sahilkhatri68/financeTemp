@@ -3,7 +3,7 @@
 
  session_start();
 //  code for checking session email -------------------
- if (isset($_SESSION['email'])) {
+ if (isset($_SESSION['email'])) { 
   $email = $_SESSION['email'];
   $select = "SELECT  * from users WHERE email='$email'  ";
   $query = mysqli_query($conn, $select);
@@ -69,6 +69,7 @@ Finance Business TemplateMo
 https://templatemo.com/tm-545-finance-business
 
 -->
+
 </head>
 
 <body>
@@ -102,17 +103,24 @@ https://templatemo.com/tm-545-finance-business
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="about.html">About Us</a>
+              <a class="nav-link" href="./all_LettersTable.php">About Us</a>
             </li>
             <li class="nav-item active">
-              <a class="nav-link" href="services.html">Our Services</a>
+              <a class="nav-link" href="./services.php">Our Services</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="./Login.php">Login</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="./profile.php">Profile</a>
-            </li>
+            <?php 
+              if(isset($_SESSION['loggedin'])==true)
+              {
+                echo "  <li class='nav-item'>
+                <a class='nav-link' href='./profile.php'>Profile</a>
+              </li>";
+              }   
+              else{
+                echo "<li class='nav-item'>
+                <a class='nav-link' href='./Login.php'>Login</a>
+              </li>";
+              }      
+              ?>    
           </ul>
         </div>
       </div>
@@ -132,54 +140,59 @@ https://templatemo.com/tm-545-finance-business
   </div>
 
   <!-- meeting form start -->
-  <div class="formdiv">
-    <form method="POST" action="./services.php">
-     <div class="schedulhead"><h4>Schedule Meeting</h4> <hr style="margin-bottom: 30px;" /></div> 
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="inputEmail4">Email</label>
-          <input type="email" class="form-control" value=<?php echo $data['email'] ?> name="email" id="inputEmail4" placeholder="Email" Required>
+  <?php
+  if(isset($_SESSION['loggedin'])      ==true)
+  {
+    echo "<div class='formdiv'>
+    <form method='POST' action='./services.php'>
+     <div class='schedulhead'><h4>Schedule Meeting</h4> <hr style='margin-bottom: 30px;' /></div> 
+      <div class='form-row'>
+        <div class='form-group col-md-6'>
+          <label for='inputEmail4'>Email</label>
+          <input type='email' class='form-control' value='$data[email]'   name='email' id='inputEmail4' placeholder='Email' Required>
         </div>
-        <div class="form-group col-md-6">
-          <label for="inputPassword4">Reference ID</label>
-          <input type="text" class="form-control" id="referenceID" value=<?php echo $data['referenceId'] ?>  name="referenceId" placeholder="refernceID" Required>
+        <div class='form-group col-md-6'>
+          <label for='inputPassword4'>Reference ID</label>
+          <input type='text' class='form-control' id='referenceID' value= '$data[referenceId]'   name='referenceId' placeholder='refernceID' Required>
         </div>
       </div>
-      <div class="form-group">
-        <label for="inputAddress">Address</label>
-        <input type="text" class="form-control" id="inputAddress" name="address" placeholder="Enter address" Required>
+      <div class='form-group'>
+        <label for='inputAddress'>Address</label>
+        <input type='text' class='form-control' id='inputAddress' name='address' placeholder='Enter address' Required>
       </div>
-      <div class="form-group">
-        <label for="inputAddress2">Subject</label>
-        <textarea type="text" class="form-control" id="inputAddress2" name="subject" placeholder="Enter your subject" Required></textarea>
+      <div class='form-group'>
+        <label for='inputAddress2'>Subject</label>
+        <textarea type='text' class='form-control' id='inputAddress2' name='subject' placeholder='Enter your subject' Required></textarea>
       </div>
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="inputCity">City</label>
-          <input type="text" class="form-control" name="city" id="inputCity" Required>
+      <div class='form-row'>
+        <div class='form-group col-md-6'>
+          <label for='inputCity'>City</label>
+          <input type='text' class='form-control' name='city' id='inputCity' Required>
         </div>
-        <div class="form-group col-md-4">
-          <label for="inputState">Date</label>
-        <input type="date" class="form-control date" id="date" name="date" placeholder="Enter meeting date" Required>
+        <div class='form-group col-md-4'>
+          <label for='inputState'>Date</label>
+        <input type='date' class='form-control date' id='date' name='date' placeholder='Enter meeting date' Required>
           
         </div>
-        <div class="form-group col-md-2">
-          <label for="inputZip">Zip</label>
-          <input type="text" class="form-control" name="zip" id="inputZip" Required>
+        <div class='form-group col-md-2'>
+          <label for='inputZip'>Zip</label>
+          <input type='text' class='form-control' name='zip' id='inputZip' Required>
         </div>
       </div>
-      <div class="form-group">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="gridCheck" Required>
-          <label class="form-check-label" for="gridCheck">
+      <div class='form-group'>
+        <div class='form-check'>
+          <input class='form-check-input' type='checkbox' id='gridCheck' Required>
+          <label class='form-check-label' for='gridCheck'>
             Allow T&C
           </label>
         </div>
       </div>
-      <button  name="submit" class="btn btn-primary" Required>Submit</button>
+      <button  name='submit' class='btn btn-primary' Required>Submit</button>
     </form>
-  </div>
-  <!-- meeting form end -->
+  </div>";
+  }
+  else{}
+  ?>
 
 
 

@@ -86,17 +86,26 @@ $data = mysqli_fetch_assoc($query);
                 </a>
               </li>
               <li class="nav-item"> 
-                <a class="nav-link" href="about.html">About Us</a>
+                <a class="nav-link" href="./all_LettersTable.php">About Us</a>
               </li>  
               <li class="nav-item">
                 <a class="nav-link" href="./services.php">Our Services</a>
-              </li>                          
-              <li class="nav-item">
-                <a class="nav-link" href="./Login.php">Login</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="./profile.php">Profile</a>
-              </li>
+              </li>  
+                <?php 
+                if(isset($_SESSION['loggedin'])==true)
+                {
+                  echo "  <li class='nav-item'>
+                  <a class='nav-link' href='./profile.php'>Profile</a>
+                </li>";
+                }   
+                else{
+                  echo "<li class='nav-item'>
+                  <a class='nav-link' href='./Login.php'>Login</a>
+                </li>";
+                }      
+                ?>               
+              
+              
             </ul>
           </div>
         </div>
